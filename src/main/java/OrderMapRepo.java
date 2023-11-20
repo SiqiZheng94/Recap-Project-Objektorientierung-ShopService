@@ -26,4 +26,11 @@ public class OrderMapRepo implements OrderRepo{
     public void removeOrder(String id) {
         orders.remove(id);
     }
+
+    @Override
+    public String toString() {
+        return "OrderMapRepo{" +
+                "orders=" + orders +
+                '}';
+    }
 }
