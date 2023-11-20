@@ -29,10 +29,15 @@ class ShopServiceTest {
         List<String> productsIds = List.of("1", "2");
 
         //WHEN
-        Order actual = shopService.addOrder(productsIds);
+        try {
+            shopService.addOrder(productsIds);
+            fail();
+        } catch (Exception e) {
+            assertTrue(true);
+        }
 
         //THEN
-        assertNull(actual);
+
     }
     @Test
     void OrderStatusList_whenPROCESSING_exceptEquals(){
