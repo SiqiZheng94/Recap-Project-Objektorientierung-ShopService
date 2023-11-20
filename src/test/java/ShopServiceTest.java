@@ -57,4 +57,15 @@ class ShopServiceTest {
         List<Order> orderStatusCompleted = shopService.OrderStatusList(OrderStatus.COMPLETED);
         assertEquals(0,orderStatusCompleted.size());
     }
+    @Test
+    void updateOrder_when(){
+        ShopService shopService = new ShopService();
+        //Product part1 = new Product("1", "part1");
+        //Product part2 = new Product("2", "part2");
+
+        Order order1 = shopService.addOrder(List.of("1"));
+        Order actual = shopService.updateOrder(order1.id(),OrderStatus.IN_DELIVERY);
+        Order excepted = new Order(order1.id(), order1.products(), OrderStatus.IN_DELIVERY);
+        assertEquals(actual,excepted);
+    }
 }

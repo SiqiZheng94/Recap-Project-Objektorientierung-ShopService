@@ -60,4 +60,15 @@ public class ShopService {
                 .filter(order -> order.status().equals(orderStatus))
                 .collect(Collectors.toList());
     }
+    public Order updateOrder(String id, OrderStatus status){
+        List<Order> orders = orderRepo.getOrders();
+        Optional<Order> findOrder = orders.stream()
+                .filter(order -> order.id().equals(id))
+                .findFirst();
+        if(findOrder.isPresent()){
+            Order updatedorder = findOrder.get().withStatus(status);
+            return updatedorder;
+        }
+        throw new NullPointerException("haven't find the order");
+    }
 }
