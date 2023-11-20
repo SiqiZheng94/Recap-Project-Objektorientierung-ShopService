@@ -6,7 +6,7 @@ public class ShopService {
     private ProductRepo productRepo = new ProductRepo();
     private OrderRepo orderRepo = new OrderMapRepo();
 
-    /*
+
     public Order addOrder(List<String> productIds) {
 
         List<Product> products = new ArrayList<>();
@@ -19,10 +19,10 @@ public class ShopService {
             products.add(productToOrder);
         }
 
-        Order newOrder = new Order(UUID.randomUUID().toString(), products);
+        Order newOrder = new Order(UUID.randomUUID().toString(), products,OrderStatus.IN_DELIVERY);
 
         return orderRepo.addOrder(newOrder);
 
 
-    }*/
+    }
 }
