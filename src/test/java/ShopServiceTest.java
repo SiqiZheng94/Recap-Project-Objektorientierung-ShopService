@@ -3,6 +3,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ShopServiceTest {
 
@@ -32,5 +33,23 @@ class ShopServiceTest {
 
         //THEN
         assertNull(actual);
+    }
+    @Test
+    void OrderStatusList_whenPROCESSING_exceptEquals(){
+
+        ShopService shopService = new ShopService();
+        shopService.addOrder(List.of("1"));
+        List<Order> orderStatusProcessing = shopService.OrderStatusList(OrderStatus.PROCESSING);
+        for(Order order:orderStatusProcessing) {
+            assertEquals(order.status(),OrderStatus.PROCESSING);
+        }
+    }
+    @Test
+    void OrderStatusList_whenCOMPLETED_except0(){
+
+        ShopService shopService = new ShopService();
+        shopService.addOrder(List.of("1"));
+        List<Order> orderStatusCompleted = shopService.OrderStatusList(OrderStatus.COMPLETED);
+        assertEquals(0,orderStatusCompleted.size());
     }
 }

@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class ShopService {
     private ProductRepo productRepo = new ProductRepo();
@@ -19,13 +20,22 @@ public class ShopService {
             products.add(productToOrder);
         }
 
-        Order newOrder = new Order(UUID.randomUUID().toString(), products,OrderStatus.IN_DELIVERY);
+        Order newOrder = new Order(UUID.randomUUID().toString(), products,OrderStatus.PROCESSING);
 
         return orderRepo.addOrder(newOrder);
 
 
     }
-    public List<Order> OrderPROCESSING(){
+   /* public List<Order> OrderPROCESSING(){
+        return orderRepo.getOrders().stream()
+                .filter(order -> order.status().equals(OrderStatus.PROCESSING))
+                .collect(Collectors.toList());
+    }
 
+    */
+    public List<Order> OrderStatusList(OrderStatus orderStatus){
+        return orderRepo.getOrders().stream()
+                .filter(order -> order.status().equals(orderStatus))
+                .collect(Collectors.toList());
     }
 }
