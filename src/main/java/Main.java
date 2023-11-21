@@ -17,5 +17,7 @@ public class Main {
         Order order3 = shopService.addOrder(List.of("1","2","3"));
         System.out.println(order3);
 
+        System.out.println("the oldest order is: "+shopService.getOldestOrderPerStatus(OrderStatus.PROCESSING));
+        //System.out.println(shopService.getOldestOrderPerStatus(OrderStatus.COMPLETED));
     }
 }
