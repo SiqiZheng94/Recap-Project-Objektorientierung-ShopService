@@ -17,8 +17,10 @@ class ShopServiceTest {
         Order actual = shopService.addOrder(productsIds);
 
         //THEN
-        Order expected = new Order("-1", List.of(new Product("1", "Apfel")),OrderStatus.IN_DELIVERY);
-        assertEquals(expected.products(), actual.products());
+        //Order expected = new Order("-1", List.of(new Product("1", "Apfel")),OrderStatus.IN_DELIVERY,actual.orderTimeStamp());
+        //assertEquals(expected.products(),actual.products());
+        Order expected = new Order(actual.id(), List.of(new Product("1", "Apfel")),OrderStatus.PROCESSING,actual.orderTimeStamp());
+        assertEquals(expected,actual);
         assertNotNull(expected.id());
     }
 
@@ -65,7 +67,7 @@ class ShopServiceTest {
 
         Order order1 = shopService.addOrder(List.of("1"));
         Order actual = shopService.updateOrder(order1.id(),OrderStatus.IN_DELIVERY);
-        Order excepted = new Order(order1.id(), order1.products(), OrderStatus.IN_DELIVERY);
+        Order excepted = new Order(order1.id(), order1.products(), OrderStatus.IN_DELIVERY,actual.orderTimeStamp());
         assertEquals(actual,excepted);
     }
 }
